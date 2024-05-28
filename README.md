@@ -20,5 +20,5 @@ And after that, run the code-generator with `flutter pub run build_runner watch`
 - [ ] Research for testing
 
 ## References
-- [riverpod + go rouing for auth design] (https://github.com/lucavenir/go_router_riverpod/blob/master/example/lib/main.dart)
+- [Riverpod with Go Route for auth design](https://github.com/lucavenir/go_router_riverpod/blob/master/example/lib/main.dart)
 
