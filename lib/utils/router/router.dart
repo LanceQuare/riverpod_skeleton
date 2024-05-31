@@ -12,20 +12,21 @@ GoRouter router(RouterRef ref) {
   final routerKey = GlobalKey<NavigatorState>(debugLabel: 'routerKey');
   final isAuth = ValueNotifier<AsyncValue<bool>>(const AsyncLoading());
   ref
-    ..onDispose(isAuth.dispose);
-    // ..listen(
-    //   appControllerProvider.select((value) => value.wh),
-    //   (_, next) {
-    //     isAuth.value = next;
-    //   },
-    // );
+    ..onDispose(isAuth.dispose)
+    ..listen(
+        appControllerProvider.select((value) => value.whenData((value)=> value?.token?.isNotEmpty ?? false)),
+        (_, next) {
+          isAuth.value = next;
+        }
+    );
 
   final router = GoRouter(
     navigatorKey: routerKey,
     debugLogDiagnostics: true,
     initialLocation: HomeRoute().location,
     redirect: (context, state) {
-
+      final auth = isAuth.value.requireValue;
+      return auth ? null : LoginRoute().location;
     },
     routes: $appRoutes,
   );

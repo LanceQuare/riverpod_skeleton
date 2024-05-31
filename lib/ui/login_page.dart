@@ -16,7 +16,7 @@ class LoginPage extends HookConsumerWidget {
             Text(
               'Login Page',
             ),
-            ElevatedButton(onPressed: () => ref.read(loginControllerProvider.notifier).login("", ""), child: const Text('Login'))
+            ElevatedButton(onPressed: () => ref.read(loginControllerProvider.notifier).login("Lazzaro", ""), child: const Text('Login'))
           ],
         ),
       )
