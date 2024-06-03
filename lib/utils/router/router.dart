@@ -22,9 +22,12 @@ GoRouter router(RouterRef ref) {
 
   final router = GoRouter(
     navigatorKey: routerKey,
+    refreshListenable: isAuth,
     debugLogDiagnostics: true,
     initialLocation: HomeRoute().location,
     redirect: (context, state) {
+      if (isAuth.value.unwrapPrevious().hasError) return LoginRoute().location;
+      if (isAuth.value.isLoading || !isAuth.value.hasValue) return HomeRoute().location;
       final auth = isAuth.value.requireValue;
       return auth ? null : LoginRoute().location;
     },

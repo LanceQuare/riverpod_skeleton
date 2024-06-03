@@ -38,7 +38,21 @@ const UserCacheSchema = CollectionSchema(
   deserialize: _userCacheDeserialize,
   deserializeProp: _userCacheDeserializeProp,
   idName: r'id',
-  indexes: {},
+  indexes: {
+    r'name': IndexSchema(
+      id: 879695947855722453,
+      name: r'name',
+      unique: true,
+      replace: false,
+      properties: [
+        IndexPropertySchema(
+          name: r'name',
+          type: IndexType.hash,
+          caseSensitive: true,
+        )
+      ],
+    )
+  },
   links: {},
   embeddedSchemas: {},
   getId: _userCacheGetId,
@@ -129,6 +143,60 @@ void _userCacheAttach(IsarCollection<dynamic> col, Id id, UserCache object) {
   object.isarId = id;
 }
 
+extension UserCacheByIndex on IsarCollection<UserCache> {
+  Future<UserCache?> getByName(String? name) {
+    return getByIndex(r'name', [name]);
+  }
+
+  UserCache? getByNameSync(String? name) {
+    return getByIndexSync(r'name', [name]);
+  }
+
+  Future<bool> deleteByName(String? name) {
+    return deleteByIndex(r'name', [name]);
+  }
+
+  bool deleteByNameSync(String? name) {
+    return deleteByIndexSync(r'name', [name]);
+  }
+
+  Future<List<UserCache?>> getAllByName(List<String?> nameValues) {
+    final values = nameValues.map((e) => [e]).toList();
+    return getAllByIndex(r'name', values);
+  }
+
+  List<UserCache?> getAllByNameSync(List<String?> nameValues) {
+    final values = nameValues.map((e) => [e]).toList();
+    return getAllByIndexSync(r'name', values);
+  }
+
+  Future<int> deleteAllByName(List<String?> nameValues) {
+    final values = nameValues.map((e) => [e]).toList();
+    return deleteAllByIndex(r'name', values);
+  }
+
+  int deleteAllByNameSync(List<String?> nameValues) {
+    final values = nameValues.map((e) => [e]).toList();
+    return deleteAllByIndexSync(r'name', values);
+  }
+
+  Future<Id> putByName(UserCache object) {
+    return putByIndex(r'name', object);
+  }
+
+  Id putByNameSync(UserCache object, {bool saveLinks = true}) {
+    return putByIndexSync(r'name', object, saveLinks: saveLinks);
+  }
+
+  Future<List<Id>> putAllByName(List<UserCache> objects) {
+    return putAllByIndex(r'name', objects);
+  }
+
+  List<Id> putAllByNameSync(List<UserCache> objects, {bool saveLinks = true}) {
+    return putAllByIndexSync(r'name', objects, saveLinks: saveLinks);
+  }
+}
+
 extension UserCacheQueryWhereSort
     on QueryBuilder<UserCache, UserCache, QWhere> {
   QueryBuilder<UserCache, UserCache, QAfterWhere> anyIsarId() {
@@ -206,6 +274,71 @@ extension UserCacheQueryWhere
         upper: upperIsarId,
         includeUpper: includeUpper,
       ));
+    });
+  }
+
+  QueryBuilder<UserCache, UserCache, QAfterWhereClause> nameIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(IndexWhereClause.equalTo(
+        indexName: r'name',
+        value: [null],
+      ));
+    });
+  }
+
+  QueryBuilder<UserCache, UserCache, QAfterWhereClause> nameIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(IndexWhereClause.between(
+        indexName: r'name',
+        lower: [null],
+        includeLower: false,
+        upper: [],
+      ));
+    });
+  }
+
+  QueryBuilder<UserCache, UserCache, QAfterWhereClause> nameEqualTo(
+      String? name) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(IndexWhereClause.equalTo(
+        indexName: r'name',
+        value: [name],
+      ));
+    });
+  }
+
+  QueryBuilder<UserCache, UserCache, QAfterWhereClause> nameNotEqualTo(
+      String? name) {
+    return QueryBuilder.apply(this, (query) {
+      if (query.whereSort == Sort.asc) {
+        return query
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'name',
+              lower: [],
+              upper: [name],
+              includeUpper: false,
+            ))
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'name',
+              lower: [name],
+              includeLower: false,
+              upper: [],
+            ));
+      } else {
+        return query
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'name',
+              lower: [name],
+              includeLower: false,
+              upper: [],
+            ))
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'name',
+              lower: [],
+              upper: [name],
+              includeUpper: false,
+            ));
+      }
     });
   }
 }

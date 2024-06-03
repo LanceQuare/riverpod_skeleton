@@ -9,6 +9,8 @@ class UserCache {
 
   @Name("userId")
   String? id;
+  @Index(unique: true)
   String? name;
   String? token;
 }
+//https://www.dlsite.com/maniax/work/=/product_id/RJ01082861.html
