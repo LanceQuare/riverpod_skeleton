@@ -18,4 +18,13 @@ class AppController extends _$AppController {
     UserCache? cache = await isar.userCaches.where().findFirst();
     return cache;
   }
+
+  Future updateCache(UserCache cache) async {
+    Isar? isar = IsarInstance().isar;
+    if(isar == null) return;
+    await isar.writeTxn(() async {
+      await isar.userCaches.putByName(cache);
+    });
+    state = AsyncData(cache);
+  }
 }

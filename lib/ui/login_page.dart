@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hi_riveroid/controllers/login_controller.dart';
+import 'package:hi_riveroid/utils/router/routes.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class LoginPage extends HookConsumerWidget {
@@ -16,7 +17,10 @@ class LoginPage extends HookConsumerWidget {
             Text(
               'Login Page',
             ),
-            ElevatedButton(onPressed: () => ref.read(loginControllerProvider.notifier).login("Lazzaro", ""), child: const Text('Login'))
+            ElevatedButton(
+                onPressed: () => ref.read(loginControllerProvider.notifier).login("Lazzaro", "")
+                    .then((_) => HomeRoute().pushReplacement(context)),
+                child: const Text('Login'))
           ],
         ),
       )

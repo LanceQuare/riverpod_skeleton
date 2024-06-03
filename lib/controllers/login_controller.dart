@@ -1,3 +1,4 @@
+import 'package:hi_riveroid/controllers/app_controller.dart';
 import 'package:hi_riveroid/models/user.dart';
 import 'package:hi_riveroid/models/user_cache.dart';
 import 'package:hi_riveroid/services/user_service.dart';
@@ -18,12 +19,10 @@ class LoginController extends _$LoginController {
     Isar? isar = IsarInstance().isar;
     if(isar == null) return;
     User result = await UserService().login(username, password);
-    await isar.writeTxn(() async {
-      UserCache cache = UserCache();
-      cache.id = result.id;
-      cache.name = result.name;
-      cache.token = "${result.token}${DateTime.now().millisecondsSinceEpoch}";
-      await isar.userCaches.putByName(cache);
-    });
+    UserCache cache = UserCache();
+    cache.id = result.id;
+    cache.name = result.name;
+    cache.token = result.token;
+    await ref.read(appControllerProvider.notifier).updateCache(cache);
   }
 }
