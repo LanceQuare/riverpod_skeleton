@@ -36,6 +36,20 @@ extension $LoginRouteExtension on LoginRoute {
 RouteBase get $homeRoute => GoRouteData.$route(
       path: '/',
       factory: $HomeRouteExtension._fromState,
+      routes: [
+        GoRouteData.$route(
+          path: 'dashboard',
+          factory: $DashboardRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'the_b',
+          factory: $TheBRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'preference',
+          factory: $PreferenceRouteExtension._fromState,
+        ),
+      ],
     );
 
 extension $HomeRouteExtension on HomeRoute {
@@ -43,6 +57,59 @@ extension $HomeRouteExtension on HomeRoute {
 
   String get location => GoRouteData.$location(
         '/',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $DashboardRouteExtension on DashboardRoute {
+  static DashboardRoute _fromState(GoRouterState state) =>
+      const DashboardRoute();
+
+  String get location => GoRouteData.$location(
+        '/dashboard',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $TheBRouteExtension on TheBRoute {
+  static TheBRoute _fromState(GoRouterState state) => const TheBRoute();
+
+  String get location => GoRouteData.$location(
+        '/the_b',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $PreferenceRouteExtension on PreferenceRoute {
+  static PreferenceRoute _fromState(GoRouterState state) =>
+      const PreferenceRoute();
+
+  String get location => GoRouteData.$location(
+        '/preference',
       );
 
   void go(BuildContext context) => context.go(location);
