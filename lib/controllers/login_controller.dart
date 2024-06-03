@@ -22,8 +22,8 @@ class LoginController extends _$LoginController {
       UserCache cache = UserCache();
       cache.id = result.id;
       cache.name = result.name;
-      cache.token = result.token;
-      await isar.userCaches.put(cache);
+      cache.token = "${result.token}${DateTime.now().millisecondsSinceEpoch}";
+      await isar.userCaches.putByName(cache);
     });
   }
 }

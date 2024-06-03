@@ -9,7 +9,7 @@ class UserCache {
 
   @Name("userId")
   String? id;
-  @Index(unique: true)
+  @Index(unique: true, replace: true)
   String? name;
   String? token;
 }
