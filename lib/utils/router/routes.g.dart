@@ -34,7 +34,7 @@ extension $LoginRouteExtension on LoginRoute {
 }
 
 RouteBase get $homeRoute => ShellRouteData.$route(
-      navigatorKey: HomeRoute.$navigatorKey,
+      navigatorKey: RootRoute.$navigatorKey,
       factory: $HomeRouteExtension._fromState,
       routes: [
         GoRouteData.$route(
@@ -52,8 +52,8 @@ RouteBase get $homeRoute => ShellRouteData.$route(
       ],
     );
 
-extension $HomeRouteExtension on HomeRoute {
-  static HomeRoute _fromState(GoRouterState state) => HomeRoute();
+extension $HomeRouteExtension on RootRoute {
+  static RootRoute _fromState(GoRouterState state) => RootRoute();
 }
 
 extension $DashboardRouteExtension on DashboardRoute {

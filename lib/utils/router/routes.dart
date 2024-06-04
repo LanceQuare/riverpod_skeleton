@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_skeleton/ui/dashboard_page.dart';
-import 'package:riverpod_skeleton/ui/home_page.dart';
+import 'package:riverpod_skeleton/ui/root_page.dart';
 import 'package:riverpod_skeleton/ui/login_page.dart';
 import 'package:riverpod_skeleton/ui/preference_page.dart';
 import 'package:riverpod_skeleton/ui/the_b_page.dart';
@@ -19,14 +19,14 @@ class LoginRoute extends GoRouteData {
   }
 }
 
-@TypedShellRoute<HomeRoute>(
+@TypedShellRoute<RootRoute>(
   routes: <TypedRoute<RouteData>>[
     TypedGoRoute<DashboardRoute>(path: '/dashboard'),
     TypedGoRoute<TheBRoute>(path: '/the_b'),
     TypedGoRoute<PreferenceRoute>(path: '/preference'),
   ]
 )
-class HomeRoute extends ShellRouteData {
+class RootRoute extends ShellRouteData {
   static final GlobalKey<NavigatorState> $navigatorKey = shellNavigatorKey;
 
   // @override
@@ -37,7 +37,7 @@ class HomeRoute extends ShellRouteData {
   // }
   @override
   Widget builder(BuildContext context, GoRouterState state, Widget navigator) {
-    return HomePage(child: navigator);
+    return RootPage(child: navigator);
   }
 }
 

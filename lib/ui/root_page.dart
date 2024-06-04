@@ -4,9 +4,9 @@ import 'package:riverpod_skeleton/ui/widget/bottom_navigation.dart';
 import 'package:riverpod_skeleton/utils/router/routes.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class HomePage extends ConsumerWidget {
+class RootPage extends ConsumerWidget {
   final Widget child;
-  const HomePage({required this.child, super.key});
+  const RootPage({required this.child, super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
