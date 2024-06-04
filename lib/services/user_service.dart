@@ -1,4 +1,4 @@
-import 'package:hi_riveroid/models/user.dart';
+import 'package:riverpod_skeleton/models/user.dart';
 
 class UserService {
   Future<String> getCachedUser() async {

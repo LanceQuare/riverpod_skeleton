@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hi_riveroid/ui/widget/bottom_navigation.dart';
+import 'package:riverpod_skeleton/ui/widget/bottom_navigation.dart';
 
 class PreferencePage extends StatelessWidget {
   const PreferencePage({super.key});

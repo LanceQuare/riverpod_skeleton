@@ -1,4 +1,4 @@
-import 'package:hi_riveroid/models/user_cache.dart';
+import 'package:riverpod_skeleton/models/user_cache.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 

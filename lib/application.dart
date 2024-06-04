@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hi_riveroid/utils/router/router.dart';
+import 'package:riverpod_skeleton/utils/router/router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class HiRiverpodApplication extends ConsumerWidget {

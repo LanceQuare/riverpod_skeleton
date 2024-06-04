@@ -1,8 +1,8 @@
-import 'package:hi_riveroid/controllers/app_controller.dart';
-import 'package:hi_riveroid/models/user.dart';
-import 'package:hi_riveroid/models/user_cache.dart';
-import 'package:hi_riveroid/services/user_service.dart';
-import 'package:hi_riveroid/utils/isar_instance.dart';
+import 'package:riverpod_skeleton/controllers/app_controller.dart';
+import 'package:riverpod_skeleton/models/user.dart';
+import 'package:riverpod_skeleton/models/user_cache.dart';
+import 'package:riverpod_skeleton/services/user_service.dart';
+import 'package:riverpod_skeleton/utils/isar_instance.dart';
 import 'package:isar/isar.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

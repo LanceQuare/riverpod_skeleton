@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hi_riveroid/controllers/login_controller.dart';
-import 'package:hi_riveroid/utils/router/routes.dart';
+import 'package:riverpod_skeleton/controllers/login_controller.dart';
+import 'package:riverpod_skeleton/utils/router/routes.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class LoginPage extends HookConsumerWidget {

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hi_riveroid/ui/dashboard_page.dart';
-import 'package:hi_riveroid/ui/home_page.dart';
-import 'package:hi_riveroid/ui/login_page.dart';
-import 'package:hi_riveroid/ui/preference_page.dart';
-import 'package:hi_riveroid/ui/the_b_page.dart';
+import 'package:riverpod_skeleton/ui/dashboard_page.dart';
+import 'package:riverpod_skeleton/ui/home_page.dart';
+import 'package:riverpod_skeleton/ui/login_page.dart';
+import 'package:riverpod_skeleton/ui/preference_page.dart';
+import 'package:riverpod_skeleton/ui/the_b_page.dart';
 
 part 'routes.g.dart';
 
