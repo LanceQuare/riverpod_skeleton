@@ -33,20 +33,20 @@ extension $LoginRouteExtension on LoginRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $homeRoute => GoRouteData.$route(
-      path: '/',
+RouteBase get $homeRoute => ShellRouteData.$route(
+      navigatorKey: HomeRoute.$navigatorKey,
       factory: $HomeRouteExtension._fromState,
       routes: [
         GoRouteData.$route(
-          path: 'dashboard',
+          path: '/dashboard',
           factory: $DashboardRouteExtension._fromState,
         ),
         GoRouteData.$route(
-          path: 'the_b',
+          path: '/the_b',
           factory: $TheBRouteExtension._fromState,
         ),
         GoRouteData.$route(
-          path: 'preference',
+          path: '/preference',
           factory: $PreferenceRouteExtension._fromState,
         ),
       ],
@@ -54,19 +54,6 @@ RouteBase get $homeRoute => GoRouteData.$route(
 
 extension $HomeRouteExtension on HomeRoute {
   static HomeRoute _fromState(GoRouterState state) => HomeRoute();
-
-  String get location => GoRouteData.$location(
-        '/',
-      );
-
-  void go(BuildContext context) => context.go(location);
-
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  void replace(BuildContext context) => context.replace(location);
 }
 
 extension $DashboardRouteExtension on DashboardRoute {

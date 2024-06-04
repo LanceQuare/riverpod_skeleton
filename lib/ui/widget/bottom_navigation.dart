@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:hi_riveroid/utils/router/routes.dart';
 
 class BottomNavigation extends StatelessWidget {
+  const BottomNavigation({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
@@ -11,7 +13,7 @@ class BottomNavigation extends StatelessWidget {
         switch (index) {
           case 0:
             // HomeRoute().pushReplacement(context);
-            context.go(HomeRoute().location);
+            context.go(DashboardRoute().location);
             break;
           case 1:
             context.go(const TheBRoute().location);
@@ -28,7 +30,7 @@ class BottomNavigation extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person),
-          label: 'Profile',
+          label: 'Page B',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.settings),
@@ -39,14 +41,13 @@ class BottomNavigation extends StatelessWidget {
   }
 
   int _calculateSelectedIndex(BuildContext context) {
-    final String router = GoRouter.of(context).routerDelegate.currentConfiguration.uri.path;
-    print("Lance Test: router: $router");
-    if (router == const TheBRoute().location) {
+    final String location = GoRouter.of(context).routerDelegate.currentConfiguration.uri.path;
+    if (location.startsWith(const TheBRoute().location)) {
       return 1;
-    }
-    if (router == const PreferenceRoute().location) {
+    }else if (location.startsWith(const PreferenceRoute().location)) {
       return 2;
+    } else {
+      return 0;
     }
-    return 0;
   }
 }

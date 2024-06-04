@@ -19,7 +19,7 @@ class LoginPage extends HookConsumerWidget {
             ),
             ElevatedButton(
                 onPressed: () => ref.read(loginControllerProvider.notifier).login("Lazzaro", "")
-                    .then((_) => HomeRoute().pushReplacement(context)),
+                    .then((_) => DashboardRoute().pushReplacement(context)),
                 child: const Text('Login'))
           ],
         ),

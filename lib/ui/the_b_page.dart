@@ -20,7 +20,6 @@ class TheBPage extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigation(),
     );
   }
 }

@@ -8,6 +8,8 @@ import 'package:hi_riveroid/ui/the_b_page.dart';
 
 part 'routes.g.dart';
 
+final GlobalKey<NavigatorState> shellNavigatorKey = GlobalKey<NavigatorState>();
+
 @TypedGoRoute<LoginRoute>(path: '/login')
 class LoginRoute extends GoRouteData {
 
@@ -17,21 +19,25 @@ class LoginRoute extends GoRouteData {
   }
 }
 
-@TypedGoRoute<HomeRoute>(
-  path: '/',
-  routes: [
-    TypedGoRoute<DashboardRoute>(path: 'dashboard'),
-    TypedGoRoute<TheBRoute>(path: 'the_b'),
-    TypedGoRoute<PreferenceRoute>(path: 'preference'),
+@TypedShellRoute<HomeRoute>(
+  routes: <TypedRoute<RouteData>>[
+    TypedGoRoute<DashboardRoute>(path: '/dashboard'),
+    TypedGoRoute<TheBRoute>(path: '/the_b'),
+    TypedGoRoute<PreferenceRoute>(path: '/preference'),
   ]
 )
-class HomeRoute extends GoRouteData {
+class HomeRoute extends ShellRouteData {
+  static final GlobalKey<NavigatorState> $navigatorKey = shellNavigatorKey;
 
+  // @override
+  // Widget build(BuildContext context, GoRouterState state) {
+  //   //TODO: implement Shellroute
+  //   //https://pub.dev/documentation/go_router/latest/topics/Configuration-topic.html
+  //   return const HomePage(null);
+  // }
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    //TODO: implement Shellroute
-    //https://pub.dev/documentation/go_router/latest/topics/Configuration-topic.html
-    return const HomePage(null);
+  Widget builder(BuildContext context, GoRouterState state, Widget navigator) {
+    return HomePage(child: navigator);
   }
 }
 
