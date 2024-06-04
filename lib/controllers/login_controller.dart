@@ -2,7 +2,7 @@ import 'package:riverpod_skeleton/controllers/app_controller.dart';
 import 'package:riverpod_skeleton/models/user.dart';
 import 'package:riverpod_skeleton/models/user_cache.dart';
 import 'package:riverpod_skeleton/services/user_service.dart';
-import 'package:riverpod_skeleton/utils/isar_instance.dart';
+import 'package:riverpod_skeleton/utils/isar_utils.dart';
 import 'package:isar/isar.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -16,7 +16,7 @@ class LoginController extends _$LoginController {
 
   Future<void> login(String username, String password) async {
     // Login logic here
-    Isar? isar = IsarInstance().isar;
+    Isar? isar = IsarUtils().isar;
     if(isar == null) return;
     User result = await UserService().login(username, password);
     UserCache cache = UserCache();

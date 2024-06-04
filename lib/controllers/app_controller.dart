@@ -1,5 +1,5 @@
 import 'package:riverpod_skeleton/models/user_cache.dart';
-import 'package:riverpod_skeleton/utils/isar_instance.dart';
+import 'package:riverpod_skeleton/utils/isar_utils.dart';
 import 'package:isar/isar.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -13,14 +13,14 @@ class AppController extends _$AppController {
   }
 
   Future<UserCache?> getCachedUser() async {
-    Isar? isar = IsarInstance().isar;
+    Isar? isar = IsarUtils().isar;
     if(isar == null) return null;
     UserCache? cache = await isar.userCaches.where().findFirst();
     return cache;
   }
 
   Future updateCache(UserCache cache) async {
-    Isar? isar = IsarInstance().isar;
+    Isar? isar = IsarUtils().isar;
     if(isar == null) return;
     await isar.writeTxn(() async {
       await isar.userCaches.putByName(cache);
