@@ -19,6 +19,7 @@ class LoginRoute extends GoRouteData {
   }
 }
 
+// If you want to keep the statement for child pages, can also refer to StatefulShellRoute
 @TypedShellRoute<RootRoute>(
   routes: <TypedRoute<RouteData>>[
     TypedGoRoute<DashboardRoute>(path: '/dashboard'),
@@ -28,13 +29,7 @@ class LoginRoute extends GoRouteData {
 )
 class RootRoute extends ShellRouteData {
   static final GlobalKey<NavigatorState> $navigatorKey = shellNavigatorKey;
-
-  // @override
-  // Widget build(BuildContext context, GoRouterState state) {
-  //   //TODO: implement Shellroute
-  //   //https://pub.dev/documentation/go_router/latest/topics/Configuration-topic.html
-  //   return const HomePage(null);
-  // }
+  
   @override
   Widget builder(BuildContext context, GoRouterState state, Widget navigator) {
     return RootPage(child: navigator);
