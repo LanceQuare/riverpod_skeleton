@@ -14,7 +14,7 @@ And after that, run the code-generator with `flutter pub run build_runner watch`
 - [x] Add Isar: for local db
 - [ ] Add Dio: for network requests
 - [ ] Add Catcher: for error handling
-- [ ] To consider nested UI and routing for deep linking
+- [x] To consider nested UI and routing for deep linking
 - [ ] To consider responsive design
 - [ ] To consider localization
 - [ ] Research for testing
