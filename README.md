@@ -12,7 +12,7 @@ And after that, run the code-generator with `flutter pub run build_runner watch`
 - [x] Add Go Route: for routing
 - [x] Add Freezed: for immutable classes
 - [x] Add Isar: for local db
-- [ ] Add Dio: for network requests
+- [x] Add Dio: for network requests
 - [ ] Add Catcher: for error handling
 - [x] To consider nested UI and routing for deep linking
 - [ ] To consider responsive design
