@@ -13,15 +13,13 @@ class AppController extends _$AppController {
   }
 
   Future<UserCache?> getCachedUser() async {
-    Isar? isar = IsarUtils().isar;
-    if(isar == null) return null;
+    Isar isar = IsarUtils().isar;
     UserCache? cache = await isar.userCaches.where().findFirst();
     return cache;
   }
 
   Future updateCache(UserCache cache) async {
-    Isar? isar = IsarUtils().isar;
-    if(isar == null) return;
+    Isar isar = IsarUtils().isar;
     await isar.writeTxn(() async {
       await isar.userCaches.putByName(cache);
     });

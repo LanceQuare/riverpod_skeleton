@@ -8,7 +8,7 @@ part of 'routes.dart';
 
 List<RouteBase> get $appRoutes => [
       $loginRoute,
-      $homeRoute,
+      $rootRoute,
     ];
 
 RouteBase get $loginRoute => GoRouteData.$route(
@@ -33,9 +33,9 @@ extension $LoginRouteExtension on LoginRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $homeRoute => ShellRouteData.$route(
+RouteBase get $rootRoute => ShellRouteData.$route(
       navigatorKey: RootRoute.$navigatorKey,
-      factory: $HomeRouteExtension._fromState,
+      factory: $RootRouteExtension._fromState,
       routes: [
         GoRouteData.$route(
           path: '/dashboard',
@@ -52,7 +52,7 @@ RouteBase get $homeRoute => ShellRouteData.$route(
       ],
     );
 
-extension $HomeRouteExtension on RootRoute {
+extension $RootRouteExtension on RootRoute {
   static RootRoute _fromState(GoRouterState state) => RootRoute();
 }
 

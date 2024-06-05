@@ -10,12 +10,11 @@ class IsarUtils {
 
   IsarUtils._internal();
 
-  Isar? _isar;
-  Isar? get isar => _isar;
+  late final Isar _isar;
+  Isar get isar => _isar;
 
 
   Future init() async {
-    if(_isar != null) return;
     // Initialize Isar
     final dir = await getApplicationDocumentsDirectory();
     _isar = await Isar.open(
