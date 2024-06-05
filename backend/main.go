@@ -10,6 +10,8 @@ import (
     "github.com/gorilla/mux"
     "net/http"
     "golang.org/x/crypto/bcrypt"
+    "github.com/gorilla/websocket"
+    "sync"
 )
 
 func main() {
@@ -20,6 +22,8 @@ func main() {
     r.HandleFunc("/register", Register).Methods("POST")
     r.HandleFunc("/login", Login).Methods("POST")
     r.HandleFunc("/todos", GetTodos).Methods("GET")
+	r.HandleFunc("/todos", CreateTodo).Methods("POST")
+	r.HandleFunc("/ws", wsHandler)
 
     log.Fatal(http.ListenAndServe(":8000", r))
 }
@@ -34,6 +38,11 @@ type Todo struct {
     gorm.Model
     Title  string
     UserID uint
+}
+
+type Hub struct {
+	clients map[*websocket.Conn]bool
+	mu      sync.Mutex
 }
 
 var db *gorm.DB
@@ -144,4 +153,80 @@ func GetTodos(w http.ResponseWriter, r *http.Request) {
     var todos []Todo
     db.Where("user_id = ?", user.ID).Find(&todos)
     json.NewEncoder(w).Encode(todos)
+}
+
+func CreateTodo(w http.ResponseWriter, r *http.Request) {
+	tokenString := r.Header.Get("Authorization")
+	claims, err := ValidateJWT(tokenString)
+	if err != nil {
+		http.Error(w, "Unauthorized", http.StatusUnauthorized)
+		return
+	}
+
+	var user User
+	db.Where("username = ?", claims.Username).First(&user)
+
+	var todo Todo
+	json.NewDecoder(r.Body).Decode(&todo)
+	todo.UserID = user.ID
+
+	result := db.Create(&todo)
+	if result.Error != nil {
+		http.Error(w, "Could not create todo", http.StatusInternalServerError)
+		return
+	}
+
+	w.WriteHeader(http.StatusCreated)
+	hub.broadcastMessage([]byte("New todo created: " + todo.Title))
+}
+
+
+var hub = Hub{
+	clients: make(map[*websocket.Conn]bool),
+}
+
+func (h *Hub) registerClient(conn *websocket.Conn) {
+	h.mu.Lock()
+	defer h.mu.Unlock()
+	h.clients[conn] = true
+}
+
+func (h *Hub) unregisterClient(conn *websocket.Conn) {
+	h.mu.Lock()
+	defer h.mu.Unlock()
+	if _, ok := h.clients[conn]; ok {
+		delete(h.clients, conn)
+		conn.Close()
+	}
+}
+
+func (h *Hub) broadcastMessage(message []byte) {
+	h.mu.Lock()
+	defer h.mu.Unlock()
+	for conn := range h.clients {
+		conn.WriteMessage(websocket.TextMessage, message)
+	}
+}
+
+var upgrader = websocket.Upgrader{
+	CheckOrigin: func(r *http.Request) bool {
+		return true
+	},
+}
+
+func wsHandler(w http.ResponseWriter, r *http.Request) {
+	conn, err := upgrader.Upgrade(w, r, nil)
+	if err != nil {
+		http.Error(w, "Could not open websocket connection", http.StatusBadRequest)
+		return
+	}
+	hub.registerClient(conn)
+	defer hub.unregisterClient(conn)
+
+	for {
+		_, _, err := conn.ReadMessage()
+		if err != nil {
+			break
+		}
+	}
 }
