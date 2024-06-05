@@ -23,7 +23,7 @@ class LoginRoute extends GoRouteData {
 @TypedShellRoute<RootRoute>(
   routes: <TypedRoute<RouteData>>[
     TypedGoRoute<DashboardRoute>(path: '/dashboard'),
-    TypedGoRoute<TheBRoute>(path: '/the_b'),
+    TypedGoRoute<TodoRoute>(path: '/todo'),
     TypedGoRoute<PreferenceRoute>(path: '/preference'),
   ]
 )
@@ -46,8 +46,8 @@ class DashboardRoute extends GoRouteData {
 
 }
 
-class TheBRoute extends GoRouteData {
-  const TheBRoute();
+class TodoRoute extends GoRouteData {
+  const TodoRoute();
 
   @override
   Widget build(BuildContext context, GoRouterState state) {

@@ -46,7 +46,7 @@ class RootPage extends ConsumerWidget {
                 case 0:
                   const DashboardRoute().go(context);
                 case 1:
-                  const TheBRoute().go(context);
+                  const TodoRoute().go(context);
                 case 2:
                   const PreferenceRoute().go(context);
               }
@@ -63,7 +63,7 @@ class RootPage extends ConsumerWidget {
 
   int getCurrentIndex(BuildContext context) {
     final String location = GoRouterState.of(context).uri.path;
-    if (location.startsWith(const TheBRoute().location)) {
+    if (location.startsWith(const TodoRoute().location)) {
       return 1;
     } else if (location.startsWith(const PreferenceRoute().location)) {
       return 2;

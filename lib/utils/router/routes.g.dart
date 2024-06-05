@@ -42,8 +42,8 @@ RouteBase get $rootRoute => ShellRouteData.$route(
           factory: $DashboardRouteExtension._fromState,
         ),
         GoRouteData.$route(
-          path: '/the_b',
-          factory: $TheBRouteExtension._fromState,
+          path: '/todo',
+          factory: $TodoRouteExtension._fromState,
         ),
         GoRouteData.$route(
           path: '/preference',
@@ -74,11 +74,11 @@ extension $DashboardRouteExtension on DashboardRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $TheBRouteExtension on TheBRoute {
-  static TheBRoute _fromState(GoRouterState state) => const TheBRoute();
+extension $TodoRouteExtension on TodoRoute {
+  static TodoRoute _fromState(GoRouterState state) => const TodoRoute();
 
   String get location => GoRouteData.$location(
-        '/the_b',
+        '/todo',
       );
 
   void go(BuildContext context) => context.go(location);

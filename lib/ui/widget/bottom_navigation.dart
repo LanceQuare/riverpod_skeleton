@@ -16,7 +16,7 @@ class BottomNavigation extends StatelessWidget {
             context.go(DashboardRoute().location);
             break;
           case 1:
-            context.go(const TheBRoute().location);
+            context.go(const TodoRoute().location);
             break;
           case 2:
             context.go(const PreferenceRoute().location);
@@ -42,7 +42,7 @@ class BottomNavigation extends StatelessWidget {
 
   int _calculateSelectedIndex(BuildContext context) {
     final String location = GoRouter.of(context).routerDelegate.currentConfiguration.uri.path;
-    if (location.startsWith(const TheBRoute().location)) {
+    if (location.startsWith(const TodoRoute().location)) {
       return 1;
     }else if (location.startsWith(const PreferenceRoute().location)) {
       return 2;
