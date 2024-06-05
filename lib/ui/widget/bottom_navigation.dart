@@ -30,7 +30,7 @@ class BottomNavigation extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person),
-          label: 'Page B',
+          label: 'Todos',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.settings),

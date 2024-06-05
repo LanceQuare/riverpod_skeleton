@@ -4,7 +4,7 @@ import 'package:riverpod_skeleton/ui/dashboard_page.dart';
 import 'package:riverpod_skeleton/ui/root_page.dart';
 import 'package:riverpod_skeleton/ui/login_page.dart';
 import 'package:riverpod_skeleton/ui/preference_page.dart';
-import 'package:riverpod_skeleton/ui/the_b_page.dart';
+import 'package:riverpod_skeleton/ui/todo_page.dart';
 
 part 'routes.g.dart';
 
@@ -51,7 +51,7 @@ class TheBRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const TheBPage();
+    return const TodoPage();
   }
 
 }

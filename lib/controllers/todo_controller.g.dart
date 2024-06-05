@@ -1,26 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'app_controller.dart';
+part of 'todo_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$appControllerHash() => r'5504814813b1619e708722f071b55a54b2cf72b2';
+String _$todoControllerHash() => r'd27f9e638826b3094d4855a75d486b7d500ce876';
 
-/// See also [AppController].
-@ProviderFor(AppController)
-final appControllerProvider =
-    AutoDisposeAsyncNotifierProvider<AppController, UserCache?>.internal(
-  AppController.new,
-  name: r'appControllerProvider',
+/// See also [TodoController].
+@ProviderFor(TodoController)
+final todoControllerProvider =
+    AutoDisposeAsyncNotifierProvider<TodoController, String>.internal(
+  TodoController.new,
+  name: r'todoControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$appControllerHash,
+      : _$todoControllerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$AppController = AutoDisposeAsyncNotifier<UserCache?>;
+typedef _$TodoController = AutoDisposeAsyncNotifier<String>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
