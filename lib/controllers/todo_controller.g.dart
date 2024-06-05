@@ -6,6 +6,22 @@ part of 'todo_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+String _$todoEventStreamListenerHash() =>
+    r'67dc0de874a13437f9b46f9fc1e6872495d77e13';
+
+/// See also [todoEventStreamListener].
+@ProviderFor(todoEventStreamListener)
+final todoEventStreamListenerProvider = AutoDisposeStreamProvider<int>.internal(
+  todoEventStreamListener,
+  name: r'todoEventStreamListenerProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$todoEventStreamListenerHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef TodoEventStreamListenerRef = AutoDisposeStreamProviderRef<int>;
 String _$todoControllerHash() => r'd27f9e638826b3094d4855a75d486b7d500ce876';
 
 /// See also [TodoController].

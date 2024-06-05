@@ -8,21 +8,25 @@ class TodoPage extends ConsumerWidget  {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final todos = ref.watch(todoControllerProvider);
+    final todoEventStream = ref.watch(todoEventStreamListenerProvider);
+
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('The B Page'),
-      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            todoEventStream.when(
+              loading: () => const CircularProgressIndicator(),
+              error: (error, stack) => Text('Error: $error'),
+              data: (data) => Text('Todos: ${data}'),
+            ),
             todos.when(
               loading: () => const CircularProgressIndicator(),
               error: (error, stack) => Text('Error: $error'),
               data: (data) => Text('Todos: ${data.length}'),
             ),
             Text(
-              'Welcome to Hi Riverpod!',
+              'Welcome to Todo Page!',
             ),
           ],
         ),
