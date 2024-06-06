@@ -7,7 +7,7 @@ part of 'todo_controller.dart';
 // **************************************************************************
 
 String _$todoEventStreamListenerHash() =>
-    r'67dc0de874a13437f9b46f9fc1e6872495d77e13';
+    r'8517daa4353222e2fab9f61d729dced9413fe347';
 
 /// See also [todoEventStreamListener].
 @ProviderFor(todoEventStreamListener)

@@ -1,28 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:riverpod_skeleton/utils/router/routes.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_skeleton/controllers/root_controller.dart';
 
-class BottomNavigation extends StatelessWidget {
+class BottomNavigation extends ConsumerWidget {
   const BottomNavigation({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final int selectedIndex = ref.watch(rootControllerProvider);
     return BottomNavigationBar(
-      currentIndex: _calculateSelectedIndex(context),
-      onTap: (int index) {
-        switch (index) {
-          case 0:
-            // HomeRoute().pushReplacement(context);
-            context.go(DashboardRoute().location);
-            break;
-          case 1:
-            context.go(const TodoRoute().location);
-            break;
-          case 2:
-            context.go(const PreferenceRoute().location);
-            break;
-        }
-      },
+      currentIndex: selectedIndex,
+      onTap: (int index) => ref.read(rootControllerProvider.notifier).onBottomNavigationTap(context, index),
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
@@ -38,16 +26,5 @@ class BottomNavigation extends StatelessWidget {
         ),
       ],
     );
-  }
-
-  int _calculateSelectedIndex(BuildContext context) {
-    final String location = GoRouter.of(context).routerDelegate.currentConfiguration.uri.path;
-    if (location.startsWith(const TodoRoute().location)) {
-      return 1;
-    }else if (location.startsWith(const PreferenceRoute().location)) {
-      return 2;
-    } else {
-      return 0;
-    }
   }
 }

@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:riverpod_skeleton/controllers/root_controller.dart';
 import 'package:riverpod_skeleton/ui/widget/bottom_navigation.dart';
 import 'package:riverpod_skeleton/utils/router/routes.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class RootPage extends ConsumerWidget {
+class RootPage extends StatelessWidget {
   final Widget child;
   const RootPage({required this.child, super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home Page'),
+        title: const Text('Riverpod Skeleton'),
       ),
       body: child,
       bottomNavigationBar: const BottomNavigation(),
